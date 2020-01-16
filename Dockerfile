@@ -9,9 +9,11 @@ RUN apt-get update && apt-get -y install curl git git-lfs python3 python3-pip \
     && apt-get install -y libopenblas-base \
     && git lfs pull \
     && pip3 install -r /opt/Look4Face/requirements.txt
-CMD ["0.0.0.0:8000"]
-ENTRYPOINT ["python3", "/opt/Look4Face/Look4Face/manage.py", "runserver"]
+#CMD ["0.0.0.0:8000"]
+#ENTRYPOINT ["python3", "/opt/Look4Face/Look4Face/manage.py", "runserver"]
 
 #======
 #sudo docker build -t l4fimage .
-#sudo docker run -d --name look4face -p 8000:8000 l4fimage 
+#sudo docker run -d -it --name look4face -p 8000:8000 --log-driver json-file l4fimage
+#docker exec -it look4face bash
+#docker run -d -it --name look4face -p 8000:8000 --log-driver json-file l4fimage --device /dev/nvidia0:/dev/nvidia0 --device /dev/nvidiactl:/dev/nvidiactl --device /dev/nvidia-uvm:/dev/nvidia-uvm
